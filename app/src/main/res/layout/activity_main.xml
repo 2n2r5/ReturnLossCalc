@@ -1,0 +1,119 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+<!--
+
+    <EditText
+        android:id="@+id/frequency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:maxLength="4"/>
+-->
+    <TextView
+        android:id="@+id/test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"/>
+
+
+</LinearLayout>
+
+<!--
+
+    <LinearLayout
+        android:id="@+id/component"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        >
+        <Spinner
+            android:id="@+id/spincomp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Spinner
+            android:id="@+id/compmanu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+        <Spinner
+            android:id="@+id/compmodel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+        <EditText
+            android:id="@+id/compcablelength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:maxLength="5"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+
+
+
+
+
+&lt;!&ndash; Start Component Definition Layout element &ndash;&gt;
+        <LinearLayout
+        android:id="@+id/component0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        >
+            &lt;!&ndash; Component type Select &ndash;&gt;
+            <Spinner
+                android:id="@+id/spincomp0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+                &lt;!&ndash; Component/Cable Manufacturer Select &ndash;&gt;
+                <Spinner
+                    android:id="@+id/compmanu0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+                &lt;!&ndash; Get Model of Component/Cable &ndash;&gt;
+                <Spinner
+                    android:id="@+id/compmodel0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+                &lt;!&ndash;Enter Length for cable &ndash;&gt;
+                <EditText
+                    android:id="@+id/compcablelength0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:maxLength="5"
+                    android:visibility="gone"/>
+
+    </LinearLayout>
+
+
+
+
+
+
+-->
+
+
+
+</LinearLayout>
