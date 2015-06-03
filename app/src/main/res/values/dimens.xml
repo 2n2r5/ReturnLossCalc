@@ -4,8 +4,11 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="element_horizontal_margin">10dp</dimen>
     <dimen name="element_vertical_margin">10dp</dimen>
-    <dimen name="text_header_lable">20sp</dimen>
-    <dimen name="text_header_input">18sp</dimen>
+
+
+
+    <dimen name="text_header_lable">15sp</dimen>
+    <dimen name="text_header_input">15sp</dimen>
 
 
     <!-- For use with Layout Elements in Body -->

@@ -4,7 +4,17 @@ import android.support.v7.app.ActionBarActivity;
 
 
 /**
- * Created by tim on 5/25/15.
+ *  * Created by tim on 5/25/15.
+ *
+ *  File Name: CableTypes.java
+ *  Description: Contains an array with all cable types that users can choose from to make a a system
+ *  Also contains, methods for figuring out lost at certain frequencies. This 4th degree polynomial
+ *  was created from a trend line after plotting loss provided by manufacturers. The frequencies used
+ *  were between 700 and 2200 MHz to maintain optimal accuracy in the frequency bands commonly used in
+ *  Cellular macro testing.
+ *
+ *
+ *
  */
 public class CableTypes extends ActionBarActivity {
 

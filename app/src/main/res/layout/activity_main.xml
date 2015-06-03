@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_header_lable"
-                android:text="Enter Frequency"
+                android:text="@string/enter_frequency"
                 android:layout_margin="@dimen/element_horizontal_margin"
                 android:layout_gravity="center_vertical" />
 

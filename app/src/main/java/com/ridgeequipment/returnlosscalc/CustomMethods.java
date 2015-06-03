@@ -67,7 +67,18 @@ public class CustomMethods extends ActionBarActivity {
         return  dBmtomW(mWtodBm(dBmtomW(mWtodBm(a)-b) * rltorc(c))-d);
     }
 
+    public String[][] picker(String searchTerm, String[][] arrayName,int rowNumber){
+        int b = 0;
+        String[][] output = new String[99][5];
+        for (int i=0;i<arrayName.length;i++){
+            if (arrayName[i][rowNumber].contains(searchTerm)){
+               output[b] = arrayName[i];
+                b++;
+            }
+        }
 
+        return output;
+    }
 
 
 

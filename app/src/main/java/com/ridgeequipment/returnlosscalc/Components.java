@@ -33,6 +33,7 @@ public class Components extends ActionBarActivity {
 
 
         String[][] antennas = {
+                {"","",""},
                 {"CSS", "SA13", "15.6"},
                 {"Commscope", "HBXX-6516", "15.6"},
                 {"Commscope", "HBXX-6516-IP", "14"}
@@ -62,9 +63,10 @@ public class Components extends ActionBarActivity {
 
     // -- Define Parameters for combiners -- //
         String[][] combiners = {
-                {"Commscope", "Generic", "18"},
-                {"CSS", "Generic", "20"},
-            {"Kathrein", "Generic", "18"}};
+            {"","","",""},
+                {"Commscope", "Generic",".2", "18"},
+                {"CSS", "Generic",".2", "20"},
+            {"Kathrein", "Generic",".2", "18"}};
 
     //Arg Selects Array Column and outputs unique items only
     public String[] combinerValues(int a) {
@@ -89,8 +91,9 @@ public class Components extends ActionBarActivity {
 
     //-- Define Parameters for loads --//
         String[][] loads = {
-                {"Anritsu", "42"},
-                {"Bird", "40"}
+                {"","",""},
+                {"Anritsu","Generic" ,"42"},
+                {"Bird","Generic", "40"}
         };
 
     // Arg selects column selects column
@@ -142,7 +145,8 @@ public class Components extends ActionBarActivity {
     //-- Manage output from Cable Types --//
     CableTypes ct = new CableTypes();
 
-    // Arg selects column selects column
+    // Arg a selectes frequency for loss , Arg b selects column in array
+    // 0=Manufacturer 1=Model 2=Loss/100feet 3=RL
     public String[] cableValues(int a, int b) {
         String[] out = new String[ct.cables(a).length];
         for (int i = 0; i < ct.cables(a).length; i++) {
