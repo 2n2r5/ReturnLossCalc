@@ -1,7 +1,12 @@
 package com.ridgeequipment.returnlosscalc;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 /**
@@ -39,16 +44,38 @@ public class LayoutElements extends Activity {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp.gravity = Gravity.CENTER_HORIZONTAL;
+        lp.gravity = Gravity.TOP;
         lp.leftMargin = 0;
         lp.rightMargin = 0;
-        lp.topMargin = 5;
-        lp.bottomMargin = 5;
+        lp.topMargin = 0;
+        lp.bottomMargin = 0;
 
 
 
 
         return lp;
     }
+
+
+    public EditText length(int a) {
+        //Cable Length Edittext
+
+        EditText name = new EditText(getApplicationContext());
+        name.setId(R.id.length+a);
+        name.setLayoutParams(spinnerLayout());
+        name.setInputType(InputType.TYPE_CLASS_NUMBER);
+        name.setTextColor(Color.BLACK);
+        name.setBackgroundColor(Color.parseColor("#ffeaeaea"));
+        name.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
+        name.setTextSize(10);
+        name.setGravity(Gravity.TOP);
+        name.setHint("0000");
+        name.setVisibility(View.GONE);
+
+        return name;
+
+    }
+
+
 
 }

@@ -59,6 +59,10 @@
                 android:text=" MHz"
                 android:textSize="@dimen/text_header_lable"
                 android:layout_gravity="center_vertical" />
+            <TextView
+                android:id="@+id/length"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
 

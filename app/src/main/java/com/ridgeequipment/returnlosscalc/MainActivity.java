@@ -19,6 +19,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -40,6 +41,7 @@ public class MainActivity extends Activity {
     Components cp = new Components();
     final   LayoutElements le = new LayoutElements();
     Integer freq = 0;
+    int longest = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,15 +89,6 @@ public class MainActivity extends Activity {
         body.addView(model, le.spinnerLayout());
 
 
-        //Cable Length Edittext
-        final EditText length = new EditText(getApplicationContext());
-        length.setInputType(InputType.TYPE_CLASS_NUMBER);
-        Integer lengthint = 0;
-        if (!length.getText().toString().trim().isEmpty()){
-            lengthint = Integer.parseInt(length.getText().toString().trim());
-        }
-        length.setVisibility(View.GONE);
-        body.addView(length);
 
         final int selectionholder = 0;
 
@@ -129,7 +122,7 @@ public class MainActivity extends Activity {
                                     @Override
                                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                                        if (test.getSelectedItem().toString().contains("Cable")) {
+                                        if (compselected(test).contains("Cable")) {
                                             length.setVisibility(View.VISIBLE);
 
                                         } else {
@@ -151,7 +144,7 @@ public class MainActivity extends Activity {
 
                             model.setVisibility(View.GONE);
                         }
-                        model.setAdapter(itemadapter(selectionPosition(compselected(test)), 1));
+                            model.setAdapter(itemadapter(selectionPosition(compselected(test)), 1));
                         }
 
 
