@@ -20,7 +20,7 @@
         android:gravity="top"
         android:layout_gravity="top">
 
-        <ImageView
+                <ImageView
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:src="@drawable/reclogoonly"
@@ -29,10 +29,11 @@
             android:layout_marginTop="0dp" />
 
         <LinearLayout
+            android:id="@+id/freq"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:id="@+id/frequencyinput">
+            >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -43,7 +44,7 @@
                 android:layout_gravity="center_vertical" />
 
             <EditText
-                android:id="@+id/etid"
+                android:id="@+id/frequencyinput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="1900"
@@ -51,7 +52,8 @@
                 android:textSize="@dimen/text_header_input"
                 android:inputType="number"
                 android:maxLength="4"
-                android:layout_gravity="center_vertical" />
+                android:layout_gravity="center_vertical"
+                android:visibility="gone"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -59,10 +61,31 @@
                 android:text=" MHz"
                 android:textSize="@dimen/text_header_lable"
                 android:layout_gravity="center_vertical" />
-            <TextView
-                android:id="@+id/length"
+
+            //place holders
+            <LinearLayout
+                android:id="@+id/listitem"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+                <Spinner
+                    android:id="@+id/comp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></Spinner>
+                <Spinner
+                    android:id="@+id/manu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></Spinner>
+                <Spinner
+                    android:id="@+id/model"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></Spinner>
+                <TextView
+                    android:id="@+id/length"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" /></LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 
