@@ -49,33 +49,39 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
 
+    }
+    @Override
+            protected void onStart(){
+            super.onStart();
+            setContentView(R.layout.activity_main);
+
 
       Integer freq = le.freq(findViewById(R.id.frequencyinput));
 
 
         // Setup Layout
 
-        le.listitem(this,1).addView(le.comp(getApplicationContext(), 1), le.spinnerLayout());
+      //  le.listitem(this,1).addView(le.comp(getApplicationContext(), 1), le.spinnerLayout());
 
 
-        le.listitem(this,1).addView(le.manu(getApplicationContext(), 1), le.spinnerLayout());
+      //  le.listitem(this,1).addView(le.manu(getApplicationContext(), 1), le.spinnerLayout());
 
 
-        try {
-            final String manuSelected = le.manu(getApplicationContext(), 1).getSelectedItem().toString().trim();
-        } catch (NullPointerException e) {
+     //   try {
+     //       final String manuSelected = le.manu(getApplicationContext(), 1).getSelectedItem().toString().trim();
+     //   } catch (NullPointerException e) {
 
-        }
+     //   }
 
 
-        le.listitem(this,1).addView(le.model(getApplicationContext(), 1), le.spinnerLayout());
-        try {
-            final String modelSelected = le.model(getApplicationContext(), 1).getSelectedItem().toString().trim();
-        } catch (NullPointerException e) {
+     //   le.listitem(this,1).addView(le.model(getApplicationContext(), 1), le.spinnerLayout());
+     //   try {
+    //        final String modelSelected = le.model(getApplicationContext(), 1).getSelectedItem().toString().trim();
+      //  } catch (NullPointerException e) {
 
-        }
+     //   }
 
-        le.listitem(this,1).addView(le.length(getApplicationContext(), 1));
+    //    le.listitem(this,1).addView(le.length(getApplicationContext(), 1));
 
     }
 

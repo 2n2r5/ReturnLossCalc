@@ -96,13 +96,13 @@ public class LayoutElements extends Activity {
         return manu;
     }
 
-    public Spinner comp(Context context, int a){
+    public Spinner comp(Context context, int a , String[] array){
         //comp Spinner
 
         Spinner comp = new Spinner(context);
         comp.setBackgroundColor(Color.parseColor("#ffeaeaea"));
         comp.setVisibility(View.VISIBLE);
-        comp.setAdapter(compadapter(cp.getComponent()));
+//        comp.setAdapter(compadapter(cp.getComponent()));
         return comp;
     }
 
@@ -153,16 +153,16 @@ public class LayoutElements extends Activity {
     }
 
 
-    //Creates Custom Array Adapter for Component Sprinner
+  /*  //Creates Custom Array Adapter for Component Sprinner
     public ArrayAdapter<String> compadapter(String[] comparray) {
 
-        String[] array = comparray;
+
         ArrayAdapter<String> aad = new ArrayAdapter<>(
                 this,
-                R.layout.spinner_item,R.id.spintv,
-                array
+                android.R.layout.simple_spinner_item,
+                comparray
         );
 
         return aad;
-    }
+    }*/
 }
