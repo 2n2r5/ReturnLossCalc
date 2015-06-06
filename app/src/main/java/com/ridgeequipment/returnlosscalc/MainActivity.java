@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
     Components cp = new Components();
     LayoutElements le = new LayoutElements();
     Integer freq = 0;
-    int longest = 4;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,51 +56,83 @@ public class MainActivity extends Activity {
         Integer freq = le.freq(findViewById(R.id.frequencyinput));
 
 
-        int countlines = 1;
+        int countlines = 10;
 
 
         // Setup Layout
         Log.i("Loading Preload", "For loop PreLoad");
 
+        for (int i=0;i<countlines;i++) {
 
-            final LinearLayout newline = le.listitem(getApplicationContext(), 0);
+            final LinearLayout newline = le.listitem(getApplicationContext(), i);
             parent.addView(newline);
             newline.setVisibility(View.VISIBLE);
 
-            final Spinner component = le.comp(getApplicationContext(), 0);
+            final Spinner component = le.comp(getApplicationContext(), i);
             component.setAdapter(componentadap());
             newline.addView(component);
 
 
-            final Spinner manufacturer = le.manu(getApplicationContext(), 0, selectionadap(compint(component), 0));
+            final Spinner manufacturer = le.manu(getApplicationContext(), i, selectionadap(compint(component), 0));
             newline.addView(manufacturer);
 
-            //Spinner model = le.model(getApplicationContext(), 0, selectionadap(compint(component), 0));
-            //newline.addView(model);
+            final Spinner model = le.model(getApplicationContext(), i, selectionadap(compint(component), 0));
+            newline.addView(model);
 
-            EditText length = le.length(getApplicationContext(), 0);
+            final EditText length = le.length(getApplicationContext(), i);
             newline.addView(length);
 
-            Log.i("Event Start","Starting Component OnItemSelectListener");
+            Log.i("Event Start", "Starting Component OnItemSelectListener");
             component.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                  manufacturer.setAdapter(selectionadap(position,0));
-                  manufacturer.setVisibility(View.VISIBLE);
+                    if (!component.getSelectedItem().toString().trim().isEmpty()) {
+                        final Integer selectedint = position;
+                        manufacturer.setAdapter(selectionadap(selectedint, 0));
+                        manufacturer.setVisibility(View.VISIBLE);
+                        manufacturer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                if (!manufacturer.getSelectedItem().toString().trim().isEmpty()) {
+                                    model.setAdapter(selectionadap(selectedint, 1));
+                                    model.setVisibility(View.VISIBLE);
+
+                                    if(component.getSelectedItem().toString().contains("Cable")){
+                                        length.setVisibility(View.VISIBLE);
+                                    }else {
+                                        length.setVisibility(View.GONE);
+                                    }
+
+                                } else {
+                                    model.setVisibility(View.GONE);
+                                }
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Please make selection", Toast.LENGTH_SHORT);
+                        manufacturer.setVisibility(View.GONE);
+                    }
+
+
                 }
+
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
 
                 }
             });
 
-
-
-
-
-
-
+            if(!model.getSelectedItem().toString().trim().isEmpty()){
+              //  countlines++;
+            }
+        }
 
 
 

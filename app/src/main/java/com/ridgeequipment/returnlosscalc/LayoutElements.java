@@ -95,13 +95,14 @@ public class LayoutElements extends Activity {
     }
 
 
-    public Spinner model(Context context, int a) {
+    public Spinner model(Context context, int a , ArrayAdapter adapter) {
         //Model Number Spinner
         Spinner model = new Spinner(context);
         model.setId(R.id.model + a);
         model.setBackgroundColor(Color.parseColor("#ffeaeaea"));
         model.setGravity(Gravity.TOP);
         model.setVisibility(View.GONE);
+        model.setAdapter(adapter);
 
         return model;
     }
