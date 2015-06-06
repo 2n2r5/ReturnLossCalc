@@ -28,16 +28,35 @@ public class Components extends ActionBarActivity {
         return component;
     }
 
+    // -- Define Parameters for combiners -- //
+    String[][] combiners = {
+            {"","","",""},
+            {"Commscope", "Generic",".2", "18"},
+            {"CSS", "Generic",".2", "20"},
+            {"Kathrein", "Generic",".2", "18"}};
 
     //---- All models of antennas that are currently used----//
-
-
         String[][] antennas = {
                 {"","",""},
                 {"CSS", "SA13", "15.6"},
                 {"Commscope", "HBXX-6516", "15.6"},
                 {"Commscope", "HBXX-6516-IP", "14"}
         };
+
+
+    //-- Define Parameters for loads --//
+    String[][] loads = {
+            {"","",""},
+            {"Anritsu","Generic" ,"42"},
+            {"Bird","Generic", "40"}
+    };
+
+    //-- Define Parameters for Bias Ts --//
+    String[][] biast = {
+            {"","","",""},
+            {"Commscope","Generic",".1","22"},
+            {"CSS","Generic",".15","20"}
+    };
 
     //Arg Selects Array Column and outputs unique items only
     public String[] antennaValues(int a) {
@@ -61,12 +80,7 @@ public class Components extends ActionBarActivity {
     }
 
 
-    // -- Define Parameters for combiners -- //
-        String[][] combiners = {
-            {"","","",""},
-                {"Commscope", "Generic",".2", "18"},
-                {"CSS", "Generic",".2", "20"},
-            {"Kathrein", "Generic",".2", "18"}};
+
 
     //Arg Selects Array Column and outputs unique items only
     public String[] combinerValues(int a) {
@@ -89,12 +103,6 @@ public class Components extends ActionBarActivity {
     // --- End Combiners Array Control --//
 
 
-    //-- Define Parameters for loads --//
-        String[][] loads = {
-                {"","",""},
-                {"Anritsu","Generic" ,"42"},
-                {"Bird","Generic", "40"}
-        };
 
     // Arg selects column selects column
     public String[] loadValues(int a) {
@@ -116,11 +124,6 @@ public class Components extends ActionBarActivity {
     }
 
 
-    //-- Define Parameters for Bias Ts --//
-        String[][] biast = {
-                {"Commscope","Generic",".1","22"},
-                {"CSS","Generic",".15","20"}
-        };
 
     // Arg selects column selects column
     public String[] biastValues(int a) {

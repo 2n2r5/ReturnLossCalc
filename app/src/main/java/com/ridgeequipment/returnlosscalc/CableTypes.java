@@ -31,6 +31,7 @@ public class CableTypes extends ActionBarActivity {
 
         //Format for entry {"Cable_Name",""+cablenameloss(freq),"Return Loss Spec"}
         String[][] cableproperties = {
+                {"","","",""},
                 {"Commscope", "LDF4", "" + ldf4loss(freq), "24.3"},
                 {"Commscope", "FSJ4", "" + fsj4loss(freq), "20.8"},
                 {"Commscope", "CR540", "" + cr540loss(freq), "26.4"},

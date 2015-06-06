@@ -13,16 +13,9 @@ package com.ridgeequipment.returnlosscalc;
  * and will denote the end of a system calculation.
  */
 
-
-
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.InputFilter;
-import android.text.InputType;
-import android.text.TextWatcher;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -49,48 +42,86 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
 
+
     }
     @Override
             protected void onStart(){
             super.onStart();
             setContentView(R.layout.activity_main);
 
+        LinearLayout parent = (LinearLayout) findViewById(R.id.parentlayout);
+        setContentView(parent);
 
-      Integer freq = le.freq(findViewById(R.id.frequencyinput));
+        //initiates and stores frequency input
+        Integer freq = le.freq(findViewById(R.id.frequencyinput));
+
+
+        int countlines = 1;
 
 
         // Setup Layout
-
-      //  le.listitem(this,1).addView(le.comp(getApplicationContext(), 1), le.spinnerLayout());
-
-
-      //  le.listitem(this,1).addView(le.manu(getApplicationContext(), 1), le.spinnerLayout());
+        Log.i("Loading Preload", "For loop PreLoad");
 
 
-     //   try {
-     //       final String manuSelected = le.manu(getApplicationContext(), 1).getSelectedItem().toString().trim();
-     //   } catch (NullPointerException e) {
+            final LinearLayout newline = le.listitem(getApplicationContext(), 0);
+            parent.addView(newline);
+            newline.setVisibility(View.VISIBLE);
 
-     //   }
+            final Spinner component = le.comp(getApplicationContext(), 0);
+            component.setAdapter(componentadap());
+            newline.addView(component);
 
 
-     //   le.listitem(this,1).addView(le.model(getApplicationContext(), 1), le.spinnerLayout());
-     //   try {
-    //        final String modelSelected = le.model(getApplicationContext(), 1).getSelectedItem().toString().trim();
-      //  } catch (NullPointerException e) {
+            final Spinner manufacturer = le.manu(getApplicationContext(), 0, selectionadap(compint(component), 0));
+            newline.addView(manufacturer);
 
-     //   }
+            //Spinner model = le.model(getApplicationContext(), 0, selectionadap(compint(component), 0));
+            //newline.addView(model);
 
-    //    le.listitem(this,1).addView(le.length(getApplicationContext(), 1));
+            EditText length = le.length(getApplicationContext(), 0);
+            newline.addView(length);
+
+            Log.i("Event Start","Starting Component OnItemSelectListener");
+            component.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                  manufacturer.setAdapter(selectionadap(position,0));
+                  manufacturer.setVisibility(View.VISIBLE);
+                }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+
+
+
+
+
+
+
+
 
     }
 
-    //Creates Custom Array Adapter for Component Sprinner
-    public ArrayAdapter<String> itemadapter(int a,int b) {
+    public ArrayAdapter<String> componentadap(){
+        return new ArrayAdapter(
+                getApplicationContext(),
+                R.layout.spinner_item,R.id.spintv,
+                cp.getComponent()
+        );
+
+    }
+
+
+    //Creates Custom Array Adapter for Component Spinner
+    //a = selection number of component adapter, b = column number of array
+    public ArrayAdapter<String> selectionadap(int a,int b) {
 
         String[] working = new String[100];
-        String[] holding = new String[101];
-
+        //Decide which component array to choose from
         switch (a+1) {
             default:working[0] = "No array found";
                 Toast.makeText(getApplicationContext(), "Invalid Selection", Toast.LENGTH_LONG).show();
@@ -114,20 +145,21 @@ public class MainActivity extends Activity {
                 working = cp.antennaRawValues(b);
                 break;
         }
-
-
-
+        //Create Adapter
         ArrayAdapter<String> aad = new ArrayAdapter<>(
                 this,
                 R.layout.spinner_item,R.id.spintv,
                 working
         );
-
         return aad;
     }
 
-
-
+    public Integer compint(Spinner comp){
+        return comp.getSelectedItemPosition();
+    }
+    public String compstring(Spinner comp){
+        return comp.getSelectedItem().toString();
+    }
 
 }
 
