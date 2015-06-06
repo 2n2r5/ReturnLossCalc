@@ -66,6 +66,7 @@ public class LayoutElements extends Activity {
 
 
         LinearLayout body = new LinearLayout(context);
+        body.setLayoutParams(bodyLayout());
         body.setId(R.id.listitem + a);
         body.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -120,6 +121,7 @@ public class LayoutElements extends Activity {
         input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
         input.setTextSize(10);
         input.setGravity(Gravity.TOP);
+        input.setTextSize(10);
         input.setHint("0000");
         input.setVisibility(View.GONE);
 
