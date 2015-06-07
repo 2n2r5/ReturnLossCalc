@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 /**
  * Created by tim on 5/28/15.
@@ -141,6 +142,20 @@ public class LayoutElements extends Activity {
             return 0;
         }
 
+    }
+
+    public TextView tv(Context context, int a){
+        TextView input = new TextView(context);
+        input.setId(R.id.length + a);
+        input.setLayoutParams(spinnerLayout());
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        input.setTextColor(Color.BLACK);
+        input.setBackgroundColor(Color.parseColor("#ffeaeaea"));
+        input.setTextSize(10);
+        input.setGravity(Gravity.TOP);
+        input.setHint("0000");
+        input.setVisibility(View.GONE);
+        return input;
     }
 
 

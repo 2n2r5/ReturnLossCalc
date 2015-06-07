@@ -78,7 +78,10 @@ public class Components extends ActionBarActivity {
         }
         return out;
     }
-
+    // Arg selects ROW and outputs all items
+    public String[] antennaRowValues(int a) {
+        return  antennas[a];
+    }
 
 
 
@@ -99,6 +102,11 @@ public class Components extends ActionBarActivity {
             out[i] = combiners[i][a];
         }
         return out;
+    }
+
+    //Arg Selects Array Column and outputs all items
+    public String[] combinerRowValues(int a) {
+      return combiners[a];
     }
     // --- End Combiners Array Control --//
 
@@ -123,6 +131,11 @@ public class Components extends ActionBarActivity {
         return out;
     }
 
+    // Arg selects row
+    public String[] loadRowValues(int a) {
+        return loads[a];
+    }
+
 
 
     // Arg selects column selects column
@@ -142,6 +155,11 @@ public class Components extends ActionBarActivity {
             out[i] = biast[i][a];
         }
         return out;
+    }
+
+    // Arg selects column selects column
+    public String[] biastRowValues(int a) {
+       return biast[a];
     }
 
 
@@ -170,6 +188,11 @@ public class Components extends ActionBarActivity {
         return out;
     }
 
+    // Arg selects column selects column
+    public String[] cableRowValues(int a, int b) {
+        return ct.cables(a)[b];
+
+    }
 
 
 }

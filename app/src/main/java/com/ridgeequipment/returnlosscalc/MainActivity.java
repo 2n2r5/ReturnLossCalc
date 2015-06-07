@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -53,7 +54,7 @@ public class MainActivity extends Activity {
         setContentView(parent);
 
         //initiates and stores frequency input
-        Integer freq = le.freq(findViewById(R.id.frequencyinput));
+        final Integer freq = le.freq(findViewById(R.id.frequencyinput));
 
 
         int countlines = 10;
@@ -82,6 +83,11 @@ public class MainActivity extends Activity {
             final EditText length = le.length(getApplicationContext(), i);
             newline.addView(length);
 
+            final TextView tv = le.tv(getApplicationContext(),i);
+            newline.addView(tv);
+
+
+
             Log.i("Event Start", "Starting Component OnItemSelectListener");
             component.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -89,6 +95,11 @@ public class MainActivity extends Activity {
 
                     if (!component.getSelectedItem().toString().trim().isEmpty()) {
                         final Integer selectedint = position;
+                        if (component.getSelectedItem().toString().contains("Cable")) {
+                            length.setVisibility(View.VISIBLE);
+                        } else {
+                            length.setVisibility(View.GONE);
+                        }
                         manufacturer.setAdapter(selectionadap(selectedint, 0));
                         manufacturer.setVisibility(View.VISIBLE);
                         manufacturer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -97,12 +108,42 @@ public class MainActivity extends Activity {
                                 if (!manufacturer.getSelectedItem().toString().trim().isEmpty()) {
                                     model.setAdapter(selectionadap(selectedint, 1));
                                     model.setVisibility(View.VISIBLE);
+                                    model.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                        @Override
+                                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                            Toast.makeText(getApplicationContext(),itemStorage(component,model,freq)[2],Toast.LENGTH_LONG).show();
+                                            if (!model.getSelectedItem().toString().trim().isEmpty()) {
+                                                switch (component.getSelectedItem().toString().toLowerCase()){
+                                                    case "cable":
 
-                                    if(component.getSelectedItem().toString().contains("Cable")){
-                                        length.setVisibility(View.VISIBLE);
-                                    }else {
-                                        length.setVisibility(View.GONE);
-                                    }
+                                                            if (!length.getText().toString().trim().isEmpty()){
+                                                            int loss = Integer.parseInt(itemStorage(component,model,freq)[2])*Integer.parseInt(length.getText().toString());
+                                                            tv.setText("Loss = " + loss + " dB" + " and RL = " + itemStorage(component,model,freq)[3]);
+                                                            tv.setVisibility(View.VISIBLE);}
+
+                                                        break;
+                                                    case "antenna": case "load":
+                                                        tv.setText("RL = " + itemStorage(component,model,freq)[2] + " dB");
+                                                        tv.setVisibility(View.VISIBLE);
+                                                        break;
+                                                    default:
+                                                        tv.setText("Loss = " + itemStorage(component,model,freq)[2] + " dB" + " and RL = " + itemStorage(component,model,freq)[3]);
+                                                        tv.setVisibility(View.VISIBLE);
+                                                        break;
+                                                }
+
+                                            } else {
+                                                tv.setVisibility(View.GONE);
+                                            }
+
+                                        }
+
+                                        @Override
+                                        public void onNothingSelected(AdapterView<?> parent) {
+
+                                        }
+                                    });
+
 
                                 } else {
                                     model.setVisibility(View.GONE);
@@ -129,9 +170,9 @@ public class MainActivity extends Activity {
                 }
             });
 
-            if(!model.getSelectedItem().toString().trim().isEmpty()){
-              //  countlines++;
-            }
+            //while (!model.getSelectedItem().toString().trim().isEmpty()){
+            //    countlines++;
+            //}
         }
 
 
@@ -156,10 +197,8 @@ public class MainActivity extends Activity {
         //Decide which component array to choose from
         switch (a+1) {
             default:working[0] = "No array found";
-                Toast.makeText(getApplicationContext(), "Invalid Selection", Toast.LENGTH_LONG).show();
                 break;
             case 1:working[0] = "No array found";
-                Toast.makeText(getApplicationContext(), "Select a Component", Toast.LENGTH_LONG).show();
                 break;
             case 2:
                 working = cp.combinerRawValues(b);
@@ -191,6 +230,37 @@ public class MainActivity extends Activity {
     }
     public String compstring(Spinner comp){
         return comp.getSelectedItem().toString();
+    }
+
+ public String[] itemStorage( Spinner comp, Spinner model,Integer freq){
+            int comppos = comp.getSelectedItemPosition();
+     Log.i("component position", ""+comppos);
+            int modelpos = model.getSelectedItemPosition();
+     Log.i("component position", ""+comppos);
+            String[] working = new String[10];
+
+     switch (comppos+1) {
+         default:working[0] = "No array found";
+                 break;
+         case 1:working[0] = "No array found";
+             break;
+         case 2:
+             working = cp.combinerRowValues(modelpos);
+             break;
+         case 3:
+             working = cp.biastRowValues(modelpos);
+             break;
+         case 4:
+             working = cp.cableRowValues(freq, modelpos);
+             break;
+         case 5:
+             working = cp.loadRowValues(modelpos);
+             break;
+         case 6:
+             working = cp.antennaRawValues(modelpos);
+             break;
+     }
+     return working;
     }
 
 }
