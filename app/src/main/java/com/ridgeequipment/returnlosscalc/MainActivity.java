@@ -54,7 +54,8 @@ public class MainActivity extends Activity {
         setContentView(parent);
 
         //initiates and stores frequency input
-        final Integer freq = le.freq(findViewById(R.id.frequencyinput));
+        final EditText freq = (EditText) findViewById(R.id.frequencyinput);
+
 
 
         int countlines = 10;
@@ -111,23 +112,36 @@ public class MainActivity extends Activity {
                                     model.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                         @Override
                                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                            Toast.makeText(getApplicationContext(),itemStorage(component,model,freq)[2],Toast.LENGTH_LONG).show();
+                                         //   Toast.makeText(getApplicationContext(),itemStorage(component,model,Integer.parseInt(freq.toString()))[2],Toast.LENGTH_LONG).show();
                                             if (!model.getSelectedItem().toString().trim().isEmpty()) {
                                                 switch (component.getSelectedItem().toString().toLowerCase()){
                                                     case "cable":
 
                                                             if (!length.getText().toString().trim().isEmpty()){
-                                                            int loss = Integer.parseInt(itemStorage(component,model,freq)[2])*Integer.parseInt(length.getText().toString());
-                                                            tv.setText("Loss = " + loss + " dB" + " and RL = " + itemStorage(component,model,freq)[3]);
-                                                            tv.setVisibility(View.VISIBLE);}
+                                                                try {
+                                                                    Log.i("1","1");
+                                                                    double loss = Double.parseDouble(itemStorage(component, model, Integer.parseInt(freq.toString()))[2]) * Double.parseDouble(length.getText().toString());
+                                                                    Log.i("2","2");
+                                                                    tv.setText("Loss = " + loss + " dB" + " and RL = " + itemStorage(component, model, Integer.parseInt(freq.toString().trim()))[3]);
+                                                                    Log.i("3", "3");
+                                                                    tv.setVisibility(View.VISIBLE);
+                                                                } catch (NumberFormatException e){
+                                                                    Toast.makeText(getApplicationContext(),"Exception Thrown " + e, Toast.LENGTH_SHORT).show();
+                                                                    Log.i("NumberFormatException",e+"");
+
+                                                                }
+                                                            //Toast.makeText(getApplicationContext(),
+                                                            //        le.freq(findViewById(R.id.frequencyinput)),
+                                                            //        Toast.LENGTH_LONG).show();
+                                                            }
 
                                                         break;
                                                     case "antenna": case "load":
-                                                        tv.setText("RL = " + itemStorage(component,model,freq)[2] + " dB");
+                                                        tv.setText("RL = " + itemStorage(component,model,Integer.parseInt(freq.toString()))[2] + " dB");
                                                         tv.setVisibility(View.VISIBLE);
                                                         break;
                                                     default:
-                                                        tv.setText("Loss = " + itemStorage(component,model,freq)[2] + " dB" + " and RL = " + itemStorage(component,model,freq)[3]);
+                                                        tv.setText("Loss = " + itemStorage(component,model,Integer.parseInt(freq.toString()))[2] + " dB" + " and RL = " + itemStorage(component,model,Integer.parseInt(freq.toString()))[3]);
                                                         tv.setVisibility(View.VISIBLE);
                                                         break;
                                                 }
@@ -207,7 +221,7 @@ public class MainActivity extends Activity {
                 working = cp.biastRawValues(b);
                 break;
             case 4:
-                working = cp.cableRawValues(freq,b);
+                working = cp.cableRawValues(Integer.parseInt(freq.toString()),b);
                 break;
             case 5:
                 working = cp.loadRawValues(b);
