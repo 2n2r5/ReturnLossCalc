@@ -8,6 +8,7 @@ import android.text.InputType;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -156,6 +157,26 @@ public class LayoutElements extends Activity {
         input.setHint("0000");
         input.setVisibility(View.GONE);
         return input;
+    }
+    public TextView resulttv(Context context){
+        TextView input = new TextView(context);
+        input.setLayoutParams(spinnerLayout());
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        input.setTextColor(Color.BLACK);
+        input.setBackgroundColor(
+                Color.parseColor("#0000ff"));
+        input.setTextSize(20);
+        input.setGravity(Gravity.TOP);
+        input.setVisibility(View.GONE);
+        return input;
+    }
+
+    public Button check(Context context){
+        Button check = new Button(context);
+        check.setText("Check RL");
+        check.setTextSize(15);
+
+        return check;
     }
 
 

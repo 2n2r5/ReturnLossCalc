@@ -63,8 +63,12 @@ public class CustomMethods extends ActionBarActivity {
 
     //Gives reflected power that will make it back to origin from this point
     //a = power in , b = local attenuation, c = returnloss, d = aggregate attenuation
-    public double ulreflect(double a, double b, double c, double d){
-        return  dBmtomW(mWtodBm(dBmtomW(mWtodBm(a)-b) * rltorc(c))-d);
+    public double ulreflect(double powerin, double localatt, double rl, double aggregateatt){
+        return  dBmtomW(mWtodBm(dBmtomW(mWtodBm(powerin)-localatt) * rltorc(rl))-aggregateatt);
+    }   //Gives reflected power that will make it back to origin from this point
+    //a = power in , b = local attenuation, c = returnloss, d = aggregate attenuation
+    public double ulreflect(double powerin,  double rl, double aggregateatt){
+        return  dBmtomW(mWtodBm(dBmtomW(mWtodBm(powerin)) * rltorc(rl))-aggregateatt);
     }
 
     public String[][] picker(String searchTerm, String[][] arrayName,int rowNumber){
